@@ -57,7 +57,7 @@ public class login extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
-        System.out.println(date.getTime());
+        System.out.println(date.getMonth());
         System.out.println(dateFormat.format(date));
 
         JScrollPane pane = new JScrollPane(tb);

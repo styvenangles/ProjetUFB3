@@ -39,6 +39,7 @@ public class Planning extends JFrame implements ActionListener {
 
     private DefaultTableModel model = new DefaultTableModel();
     private JTable tb = new JTable();
+    private JScrollPane pane = new JScrollPane(tb);
 
     public Planning(String prenom){
         super("Agence Manager");
@@ -50,7 +51,6 @@ public class Planning extends JFrame implements ActionListener {
         Object[] entetes = {"", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"};
         model.setColumnIdentifiers(entetes);
         tb.setModel(model);
-        JScrollPane pane = new JScrollPane(tb);
         pane.setBounds(25,25,1135,525);
         this.add(pane);
         infos.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -195,20 +195,52 @@ public class Planning extends JFrame implements ActionListener {
             String request2 = "SELECT * FROM `dispo` WHERE ID = " + IdUser;
             statement = (PreparedStatement) connexion.prepareStatement(request2);
             result = statement.executeQuery();
-            //Object[] row = new Object[8];
-            //model.setRowCount(0);
-            Integer i = 1;
+            Object[] row = new Object[8];
+            Object[] dispoJours = new Object[7];
+            model.setRowCount(0);
+            String highRequest = "";
             while ( result.next() ) {
-                //row[0] = "";
-                Clob value = result.getClob(i);
-                Integer Lundi = result.getInt( "Lundi" );
-                Integer Mardi = result.getInt( "Mardi" );
-                Integer Mercredi = result.getInt( "Mercredi" );
-                Integer Jeudi = result.getInt("Jeudi");
-                Integer Vendredi = result.getInt( "Vendredi" );
-                Integer Samedi = result.getInt( "Samedi" );
-                Integer Dimanche = result.getInt( "Dimanche" );
-                System.out.println(value);
+                dispoJours[0] = result.getInt( "Lundi" );
+                dispoJours[1] = result.getInt( "Mardi" );
+                dispoJours[2] = result.getInt( "Mercredi" );
+                dispoJours[3] = result.getInt("Jeudi");
+                dispoJours[4] = result.getInt( "Vendredi" );
+                dispoJours[5] = result.getInt( "Samedi" );
+                dispoJours[6] = result.getInt( "Dimanche" );
+                for (int i = 0; i < dispoJours.length; i ++){
+                    if (dispoJours[i].equals(1)){
+                        switch (i){
+                            case 0:
+
+                                int k = 0;
+                                int j = 1;
+                                while (k < 13) {
+                                    int altK = k +7;
+                                    highRequest = "SELECT `"+ altK +"H` FROM horaires";
+                                    statement = (PreparedStatement) connexion.prepareStatement(highRequest);
+                                    result = statement.executeQuery();
+                                    while (result.next()) {
+                                        row[0] = k+7+"H";
+                                        row[j] = result.getInt(k+7+"H");
+                                        j++;
+                                    }
+                                    j = 1;
+                                    k++;
+                                    model.addRow(row);
+                                    tb.setBackground(pane.getBackground());
+                                    System.out.println(tb.getColumnName(0));
+                                }
+                            case 1:
+                                highRequest = "";
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                            case 6:
+                        }
+                    }
+                }
+
                 //model.addRow(row);
             }
         }

@@ -92,7 +92,7 @@ public class Connexion extends JFrame implements ActionListener {
                                 if (rankShow.equals("user")){
                                     dispose();
                                     System.out.println("Connecté en tant qu'agent immobilier");
-                                    TableauAgent menu2 = new TableauAgent("Moi");
+                                    TableauAgent menu2 = new TableauAgent("Moi", "Nul");
                                     menu2.setVisible(true);
                                 }
                                 else if (rankShow.equals("admin")) {

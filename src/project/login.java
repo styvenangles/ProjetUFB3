@@ -158,13 +158,13 @@ public class login extends JFrame implements ActionListener {
                                         dispose();
                                         System.out.println("Connecté en tant qu'employé");
                                         //System.out.println(prenomShow);
-                                        TableauAgent menu2 = new TableauAgent(prenomShow);
+                                        TableauAgent menu2 = new TableauAgent(prenomShow, rankShow);
                                         menu2.setVisible(true);
                                     }
                                     else if (rankShow.equals("admin")) {
                                         System.out.println("Connecté en tant qu'administrateur");
                                         //System.out.println(prenomShow);
-                                        TableauAdmin menu2 = new TableauAdmin(prenomShow);
+                                        TableauAgent menu2 = new TableauAgent(prenomShow, rankShow);
                                         menu2.setVisible(true);
                                         dispose();
                                     }

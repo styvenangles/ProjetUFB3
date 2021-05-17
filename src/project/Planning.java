@@ -76,7 +76,7 @@ public class Planning extends JFrame implements ActionListener {
         buttonRemove.setBounds(750,639,175,34);
         btnModif.setBounds(750, 700, 175, 34);
         btnRetour.setBounds(1050,700,75,34);
-        this.add(infos);
+        /*this.add(infos);
         this.add(labelId);
         this.add(labelNom);
         this.add(labelPrenom);
@@ -89,7 +89,7 @@ public class Planning extends JFrame implements ActionListener {
         this.add(textFieldNewTel);
         this.add(buttonAjout);
         this.add(buttonRemove);
-        this.add(btnModif);
+        this.add(btnModif);*/
         this.add(btnRetour);
 
         String request = "SELECT ID_Employe FROM `employes` WHERE Prenom = \"" + prenom + "\";";
@@ -227,8 +227,6 @@ public class Planning extends JFrame implements ActionListener {
                                     j = 1;
                                     k++;
                                     model.addRow(row);
-                                    tb.setBackground(pane.getBackground());
-                                    System.out.println(tb.getColumnName(0));
                                 }
                             case 1:
                                 highRequest = "";

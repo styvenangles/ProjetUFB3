@@ -139,7 +139,7 @@ public class TableauAdmin extends JFrame implements ActionListener {
                                         dispose();
                                         System.out.println("Connecté en tant qu'employé");
                                         System.out.println(prenomShow);
-                                        TableauAgent menu2 = new TableauAgent("Nul");
+                                        TableauAgent menu2 = new TableauAgent("Nul", "Nul");
                                         menu2.setVisible(true);
                                     }
                                     else if (rankShow.equals("admin")) {
